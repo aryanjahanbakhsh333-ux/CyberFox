@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>AI Security Center</title>
+    <link
+        rel="stylesheet"
+        href="/static/site.css"
+    >
+</head>
+
+<body>
+
+<main class="dashboard">
+
+    <section class="card">
+        <h1>AI Security Center</h1>
+
+        <p>
+            Analyze security findings and receive
+            defensive recommendations.
+        </p>
+
+        <textarea
+            id="securityInput"
+            rows="8"
+            placeholder="Describe the security findings..."
+        ></textarea>
+
+        <button
+            id="analyzeButton"
+        >
+            Analyze with AI
+        </button>
+
+        <pre
+            id="analysisResult"
+        ></pre>
+    </section>
+
+    <section class="card">
+
+        <h2>Security AI</h2>
+
+        <textarea
+            id="chatInput"
+            rows="5"
+            placeholder="Ask a security question..."
+        ></textarea>
+
+        <button
+            id="chatButton"
+        >
+            Ask AI
+        </button>
+
+        <div id="chatResult"></div>
+
+    </section>
+
+</main>
+
+<script src="/static/ai_frontend.js"></script>
+
+<script>
+const analyzeButton =
+    document.getElementById(
+        "analyzeButton"
+    );
+
+const analyzeInput =
+    document.getElementById(
+        "securityInput"
+    );
+
+const analysisResult =
+    document.getElementById(
+        "analysisResult"
+    );
+
+analyzeButton.addEventListener(
+    "click",
+    async () => {
+
+        const text =
+            analyzeInput.value.trim();
+
+        if (!text) {
+            analysisResult.textContent =
+                "Enter security findings first.";
+            return;
+        }
+
+        const result =
+            await AISecurity.analyze(
+                "user_security_assessment",
+                [
+                    {
+                        type: "security_input",
+                        severity: "medium",
+                        description: text
+                    }
+                ]
+            );
+
+        analysisResult.textContent =
+            JSON.stringify(
+                result,
+                null,
+                2
+            );
+    }
+);
+
+
+const chatButton =
+    document.getElementById(
+        "chatButton"
+    );
+
+const chatInput =
+    document.getElementById(
+        "chatInput"
+    );
+
+const chatResult =
+    document.getElementById(
+        "chatResult"
+    );
+
+chatButton.addEventListener(
+    "click",
+    async () => {
+
+        const message =
+            chatInput.value.trim();
+
+        if (!message) {
+            chatResult.textContent =
+                "Enter a question first.";
+            return;
+        }
+
+        chatResult.textContent =
+            "AI is analyzing...";
+
+        const result =
+            await AISecurity.chat(
+                message
+            );
+
+        chatResult.textContent =
+            result.reply ||
+            result.error ||
+            "No response.";
+    }
+);
+</script>
+
+</body>
+</html>

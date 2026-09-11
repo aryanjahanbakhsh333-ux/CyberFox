@@ -1,0 +1,44 @@
+{
+  "platform": "Cybersecurity AI Platform",
+  "release": "1.0.0",
+  "plans": [
+    "free",
+    "pro"
+  ],
+  "modules": {
+    "authentication": true,
+    "totp_2fa": true,
+    "recovery_codes": true,
+    "email_delivery": true,
+    "password_reset": true,
+    "ai_security": true,
+    "threat_detection": true,
+    "threat_prediction": true,
+    "phishing_detection": true,
+    "scam_detection": true,
+    "url_security": true,
+    "file_security": true,
+    "privacy_scanner": true,
+    "identity_protection": true,
+    "device_security": true,
+    "device_fleet": true,
+    "server_guardian": true,
+    "autonomous_defense_policy": true,
+    "emergency_mode": true,
+    "billing": true,
+    "webhook_idempotency": true,
+    "audit_logging": true,
+    "owner_room": true,
+    "monitoring": true,
+    "docker": true,
+    "production_checks": true,
+    "automated_tests": true
+  },
+  "security_rules": {
+    "no_raw_card_storage": true,
+    "authorized_systems_only": true,
+    "credential_theft": false,
+    "unauthorized_access": false,
+    "destructive_automation": false
+  }
+}

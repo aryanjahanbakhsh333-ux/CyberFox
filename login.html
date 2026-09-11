@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Secure Login</title>
+
+    <link
+        rel="stylesheet"
+        href="/site.css"
+    >
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <section class="auth-card">
+
+            <div class="brand-mark">
+                🖤🦊
+            </div>
+
+            <h1>Security Portal</h1>
+
+            <p class="muted">
+                Secure access to your cybersecurity dashboard.
+            </p>
+
+            <form id="login-form">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                >
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Your password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+            <div
+                id="login-message"
+                class="message"
+            ></div>
+
+            <div class="auth-links">
+                <a href="/">
+                    Back to Home
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="/login.js"></script>
+
+</body>
+
+</html>

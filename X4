@@ -1,0 +1,29 @@
+bfx-defense-lab/
+│
+├── backend/
+│   ├── app.py
+│   ├── scanner.py
+│   ├── database.py
+│   └── models.py
+│
+├── scanner/
+│   ├── headers.py
+│   ├── cookies.py
+│   ├── cors.py
+│   ├── tls.py
+│   ├── rate_limit.py
+│   └── information_disclosure.py
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
+│
+├── tests/
+│   ├── test_scanner.py
+│   └── test_headers.py
+│
+├── requirements.txt
+├── .env.example
+├── .gitignore
+└── README.md

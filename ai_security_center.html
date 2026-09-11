@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Security Center</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/site.css"
+    >
+</head>
+
+<body>
+
+<main class="dashboard">
+
+    <section class="card">
+
+        <h1>AI Security Center</h1>
+
+        <p>
+            Analyze security information,
+            detect risks and receive defensive
+            recommendations.
+        </p>
+
+        <textarea
+            id="aiMessage"
+            rows="8"
+            maxlength="12000"
+            placeholder="Describe the security problem..."
+        ></textarea>
+
+        <button id="aiAnalyze">
+            Analyze Security
+        </button>
+
+        <pre id="aiResult"></pre>
+
+    </section>
+
+    <section class="card">
+
+        <h2>AI Usage</h2>
+
+        <div id="aiUsage">
+            Loading...
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+const token =
+    localStorage.getItem("token") || "";
+
+const message =
+    document.getElementById("aiMessage");
+
+const result =
+    document.getElementById("aiResult");
+
+const button =
+    document.getElementById("aiAnalyze");
+
+const usage =
+    document.getElementById("aiUsage");
+
+
+button.addEventListener(
+    "click",
+    async () => {
+
+        const text =
+            message.value.trim();
+
+        if (!text) {
+            result.textContent =
+                "Enter a security problem first.";
+            return;
+        }
+
+        button.disabled = true;
+        button.textContent =
+            "Analyzing...";
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/ai-final/analyze",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+                        },
+
+                        body: JSON.stringify({
+                            target:
+                                "security_assessment",
+
+                            message: text,
+
+                            context: {}
+                        })
+                    }
+                );
+
+            const data =
+                await response.json();
+
+            result.textContent =
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                );
+
+        } catch (error) {
+
+            result.textContent =
+                "AI service unavailable.";
+
+        } finally {
+
+            button.disabled = false;
+            button.textContent =
+                "Analyze Security";
+        }
+    }
+);
+
+
+async function loadUsage() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ai/usage",
+                {
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!data.success) {
+            usage.textContent =
+                data.error || "Unavailable";
+            return;
+        }
+
+        usage.textContent =
+            `${data.used} / ${data.limit} AI analyses used today. ` +
+            `${data.remaining} remaining.`;
+
+    } catch (error) {
+
+        usage.textContent =
+            "Unable to load AI usage.";
+
+    }
+}
+
+
+loadUsage();
+</script>
+
+</body>
+</html>

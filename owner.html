@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Owner Room</title>
+
+    <link
+        rel="stylesheet"
+        href="/site.css"
+    >
+</head>
+
+<body>
+
+    <main class="owner-page">
+
+        <section class="owner-card">
+
+            <div class="owner-logo">
+                🖤🦊
+            </div>
+
+            <p class="eyebrow">
+                PRIVATE OWNER ROOM
+            </p>
+
+            <h1 id="owner-welcome">
+                VERIFYING OWNER...
+            </h1>
+
+            <p id="owner-message">
+                Checking secure owner authorization.
+            </p>
+
+            <div
+                id="owner-status"
+                class="owner-status"
+            >
+                Checking...
+            </div>
+
+            <div class="owner-stats">
+
+                <div>
+                    <span>Users</span>
+                    <strong id="users-count">—</strong>
+                </div>
+
+                <div>
+                    <span>Pro Users</span>
+                    <strong id="pro-count">—</strong>
+                </div>
+
+                <div>
+                    <span>Payments</span>
+                    <strong id="payments-count">—</strong>
+                </div>
+
+                <div>
+                    <span>Security Events</span>
+                    <strong id="events-count">—</strong>
+                </div>
+
+            </div>
+
+            <a
+                href="/dashboard"
+                class="secondary-button link-button"
+            >
+                User Dashboard
+            </a>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        async function loadOwnerRoom() {
+
+            const token = localStorage.getItem(
+                "security_token"
+            );
+
+            const status =
+                document.getElementById(
+                    "owner-status"
+                );
+
+            if (!token) {
+                status.textContent =
+                    "Authentication required.";
+
+                return;
+            }
+
+            try {
+
+                const identityResponse =
+                    await fetch(
+                        "/api/owner-identity/",
+                        {
+                            headers: {
+                                "Authorization":
+                                    "Bearer " + token
+                            }
+                        }
+                    );
+
+                const identity =
+                    await identityResponse.json();
+
+                if (
+                    !identity.success ||
+                    !identity.is_owner
+                ) {
+                    status.textContent =
+                        "Owner access denied.";
+
+                    return;
+                }
+
+                document.getElementById(
+                    "owner-welcome"
+                ).textContent =
+                    identity.welcome.title +
+                    ", OWNER 🖤🦊";
+
+                document.getElementById(
+                    "owner-message"
+                ).textContent =
+                    identity.welcome.message;
+
+                status.textContent =
+                    "Owner authorization verified.";
+
+                const dashboardResponse =
+                    await fetch(
+                        "/api/owner/dashboard/",
+                        {
+                            headers: {
+                                "Authorization":
+                                    "Bearer " + token
+                            }
+                        }
+                    );
+
+                const dashboard =
+                    await dashboardResponse.json();
+
+                if (dashboard.success) {
+
+                    document.getElementById(
+                        "users-count"
+                    ).textContent =
+                        dashboard.statistics.users;
+
+                    document.getElementById(
+                        "pro-count"
+                    ).textContent =
+                        dashboard.statistics.pro_users;
+
+                    document.getElementById(
+                        "payments-count"
+                    ).textContent =
+                        dashboard.statistics.payments;
+
+                    document.getElementById(
+                        "events-count"
+                    ).textContent =
+                        dashboard.statistics.security_events;
+                }
+
+            } catch (error) {
+
+                status.textContent =
+                    "Unable to connect to server.";
+
+            }
+        }
+
+        loadOwnerRoom();
+
+    </script>
+
+</body>
+
+</html>

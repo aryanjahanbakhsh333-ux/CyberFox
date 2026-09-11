@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Security Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="/site.css"
+    >
+</head>
+
+<body>
+
+    <nav class="dashboard-nav">
+
+        <div class="brand">
+            🖤🦊 Security AI
+        </div>
+
+        <button
+            id="logout-button"
+            class="secondary-button"
+        >
+            Logout
+        </button>
+
+    </nav>
+
+    <main class="dashboard">
+
+        <section class="welcome-section">
+
+            <p class="eyebrow">
+                SECURITY CENTER
+            </p>
+
+            <h1 id="welcome-title">
+                Welcome
+            </h1>
+
+            <p id="welcome-text">
+                Loading your security dashboard...
+            </p>
+
+        </section>
+
+        <section class="dashboard-grid">
+
+            <article class="dashboard-card">
+                <span>Security Score</span>
+                <strong id="security-score">
+                    —
+                </strong>
+            </article>
+
+            <article class="dashboard-card">
+                <span>Current Plan</span>
+                <strong id="user-plan">
+                    —
+                </strong>
+            </article>
+
+            <article class="dashboard-card">
+                <span>Threats</span>
+                <strong id="threat-count">
+                    —
+                </strong>
+            </article>
+
+            <article class="dashboard-card">
+                <span>Account</span>
+                <strong id="account-status">
+                    —
+                </strong>
+            </article>
+
+        </section>
+
+        <section class="dashboard-panel">
+
+            <h2>Security Actions</h2>
+
+            <div class="action-grid">
+
+                <button
+                    data-action="security"
+                    class="action-button"
+                >
+                    Security Analysis
+                </button>
+
+                <button
+                    data-action="privacy"
+                    class="action-button"
+                >
+                    Privacy Scanner
+                </button>
+
+                <button
+                    data-action="scam"
+                    class="action-button"
+                >
+                    Scam Hunter
+                </button>
+
+                <button
+                    data-action="emergency"
+                    class="action-button danger-button"
+                >
+                    Emergency Mode
+                </button>
+
+            </div>
+
+            <div
+                id="dashboard-message"
+                class="message"
+            ></div>
+
+        </section>
+
+    </main>
+
+    <script src="/dashboard.js"></script>
+
+</body>
+
+</html>

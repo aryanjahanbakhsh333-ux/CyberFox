@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #07090d;
+    color: #f5f7fa;
+    font-family: Arial, sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.auth-page,
+.owner-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.auth-card,
+.owner-card {
+    width: 100%;
+    max-width: 520px;
+    background: #10141c;
+    border: 1px solid #252b36;
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+}
+
+.brand-mark,
+.owner-logo {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-size: 34px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.muted {
+    color: #8e98a8;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    margin: 20px 0 8px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #303846;
+    background: #090c11;
+    color: white;
+    outline: none;
+}
+
+input:focus {
+    border-color: #697789;
+}
+
+.primary-button,
+.secondary-button,
+.action-button {
+    border: 0;
+    border-radius: 10px;
+    padding: 13px 18px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.primary-button {
+    width: 100%;
+    margin-top: 24px;
+    background: white;
+    color: #080a0d;
+}
+
+.secondary-button {
+    background: #181e28;
+    color: white;
+    border: 1px solid #303846;
+}
+
+.link-button {
+    margin-top: 24px;
+}
+
+.message {
+    margin-top: 16px;
+    color: #aeb7c5;
+}
+
+.auth-links {
+    margin-top: 24px;
+}
+
+.auth-links a {
+    color: #aeb7c5;
+}
+
+.dashboard-nav {
+    min-height: 70px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #202632;
+}
+
+.brand {
+    font-weight: bold;
+}
+
+.dashboard {
+    width: min(1200px, 90%);
+    margin: 60px auto;
+}
+
+.eyebrow {
+    color: #7d899b;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.welcome-section {
+    margin-bottom: 40px;
+}
+
+.dashboard-grid,
+.owner-stats {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 18px;
+}
+
+.dashboard-card,
+.owner-stats > div {
+    background: #10141c;
+    border: 1px solid #252b36;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.dashboard-card span,
+.owner-stats span {
+    display: block;
+    color: #8994a4;
+    margin-bottom: 12px;
+}
+
+.dashboard-card strong,
+.owner-stats strong {
+    font-size: 28px;
+}
+
+.dashboard-panel {
+    margin-top: 28px;
+    background: #10141c;
+    border: 1px solid #252b36;
+    border-radius: 18px;
+    padding: 28px;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 14px;
+}
+
+.action-button {
+    background: #181e28;
+    color: white;
+    border: 1px solid #303846;
+}
+
+.danger-button {
+    border-color: #63333a;
+}
+
+.owner-card {
+    text-align: center;
+    max-width: 900px;
+}
+
+.owner-status {
+    margin: 24px 0;
+    padding: 14px;
+    border-radius: 10px;
+    background: #151b24;
+}
+
+.owner-stats {
+    text-align: left;
+    margin-top: 30px;
+}
+
+@media (max-width: 800px) {
+
+    .dashboard-grid,
+    .owner-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 520px) {
+
+    .dashboard-grid,
+    .owner-stats,
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-card,
+    .owner-card {
+        padding: 24px;
+    }
+
+}

@@ -1,0 +1,12 @@
+{
+  "security_score": 78,
+  "findings": [
+    {
+      "category": "Security Headers",
+      "severity": "Medium",
+      "location": "HTTP Response Headers",
+      "problem": "Security header is missing",
+      "recommendation": "Configure the missing security header"
+    }
+  ]
+}
